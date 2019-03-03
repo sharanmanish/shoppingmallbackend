@@ -16,7 +16,7 @@ router.post('/signup', (req, res, next) => {
         if(existingUser) {
             res.json({
                 success: false,
-                message: 'Account with that email already exist'
+                message: 'Account With That Email Already Exist'
             })
         } else {
             user.save();
@@ -25,11 +25,42 @@ router.post('/signup', (req, res, next) => {
 
             res.json({
                 success: true,
-                message: 'Enjoy your token',
+                message: 'Singed Up, Enjoy Your Token',
                 token: token
             });
         }
     });
 });
+
+router.post('/login', (req, res, next) => {
+    User.findOne({ email: req.body.email }, (err, user) => {
+        if(err) throw err;
+
+        if(!user) {
+            res.json({
+                success: false,
+                message: 'Authentication Failed ,User Not Found'
+            })
+        } else if (user) {
+            
+            var validPassword = user.comparePassword(req.body.password);
+
+            if(!validPassword) {
+                res.json({
+                    success: false,
+                    message: 'Authentication Failed ,Wrong Password'
+                })
+            } else {
+                var token = jwt.sign({user: user}, config.secret, {expiresIn: '7d'});
+
+                res.json({
+                    success: true,
+                    message: 'Authentication SuccessFull, Enjoy Your Token',
+                    token: token
+                })
+            }
+        }
+    });
+})
 
 module.exports = router;

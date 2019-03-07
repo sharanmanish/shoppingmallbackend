@@ -9,7 +9,7 @@ const UserSchema = new Schema({
     password: String,
     picture: String,
     isSeller: { type: Boolean, default: false },
-    addresss: {
+    address: {
         addr1: String,
         addr2: String,
         city: String,

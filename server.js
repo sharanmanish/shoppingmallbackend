@@ -8,6 +8,7 @@ const cors = require('cors');
 const app = express();
 
 const userRoutes = require('./routes/account');
+const mainRoutes = require('./routes/main');
 
 mongoose.set('useCreateIndex', true)
 mongoose.connect(config.database,{ useNewUrlParser: true }, (err) => {
@@ -23,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(morgan('dev'));
 app.use(cors());
+
+app.use('/api', mainRoutes);
 app.use('/api/accounts' , userRoutes);
 
 app.listen(3030, (err) => {

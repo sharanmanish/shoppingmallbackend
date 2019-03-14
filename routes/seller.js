@@ -8,6 +8,8 @@ const secret = require('../s3cred');
 
 const s3 = new aws.S3({accessKeyId: secret.Access_key_ID, secretAccessKey: secret.Secret_access_key});
 
+const faker = require('faker');
+
 const checkJWT = require('../middlewares/check-jwt');
 
 const upload = multer({
@@ -52,5 +54,23 @@ router.route('/products')
             message: 'Successfully added the product'
         });
     });
+
+    // just for testing
+    router.get('/faker/test', (req, res, next) => {
+        for (i = 0; i < 20; i++) {
+            let product = new Product();
+            product.category = "5c8a85c82a9bb31d20fe36ff";
+            product.owner = "5c7eb17ba2b14320e0a06d1f";
+            product.image = faker.image.fashion();
+            product.title = faker.commerce.productName();
+            product.description = faker.lorem.words();
+            product.price = faker.commerce.price();
+            product.save();
+        }
+
+        res.json({
+            message: "Successfully added 20 products",
+        })
+    })
 
 module.exports = router;

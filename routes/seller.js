@@ -50,7 +50,7 @@ router.route('/products')
         product.image = req.file.location;
         product.save();
         res.json({
-            successfull: true,
+            success: true,
             message: 'Successfully added the product'
         });
     });

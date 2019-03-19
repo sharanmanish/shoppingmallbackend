@@ -61,7 +61,7 @@ router.route('/products')
             let product = new Product();
             product.category = "5c8a85c82a9bb31d20fe36ff";
             product.owner = "5c7eb17ba2b14320e0a06d1f";
-            product.image = faker.image.fashion();
+            product.image = faker.image.fashion().replace(/^http:\/\//i, 'https://') + "/";
             product.title = faker.commerce.productName();
             product.description = faker.lorem.words();
             product.price = faker.commerce.price();

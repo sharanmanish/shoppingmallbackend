@@ -10,6 +10,7 @@
   "author": "manish",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.6.2",
     "aws-sdk": "^2.421.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",

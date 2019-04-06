@@ -11,7 +11,7 @@ router.get('/products', (req, res, next) => {
   const page = req.query.page;
   async.parallel([
     function(callback) {
-      Product.count({ }, (err, count) => {
+      Product.countDocuments({ }, (err, count) => {
         var totalProducts = count;
         callback(err, totalProducts);
       });
@@ -73,7 +73,7 @@ router.get('/categories/:id', (req, res, next) => {
   const page = req.query.page;
   async.parallel([
     function(callback) {
-      Product.count({ category: req.params.id }, (err, count) => {
+      Product.countDocuments({ category: req.params.id }, (err, count) => {
         var totalProducts = count;
         callback(err, totalProducts);
       });

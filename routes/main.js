@@ -84,7 +84,7 @@ router.get('/categories/:id', (req, res, next) => {
         .limit(perPage)
         .populate('category')
         .populate('owner')
-        .populate('review')
+        .populate('reviews')
         .exec((err, products) => {
           if(err) return next(err);
           callback(err, products);

@@ -54,8 +54,8 @@ ProductSchema.plugin(mongooseAlgolia, {
       return `${value}`;
     }
   },
-  virtuals: { },
-  debug: true
+  virtuals: {},
+  // debug: true
 });
 
 let Model = mongoose.model('Product', ProductSchema);

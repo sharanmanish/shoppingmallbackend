@@ -3,6 +3,8 @@ const async =  require('async');
 const Category = require('../models/category');
 const Product = require('../models/product');
 const Review = require('../models/review');
+const stripecred = require('../stripe');
+const stripe = require('stripe')(stripecred.Secret_key);
 
 const checkJWT = require('../middlewares/check-jwt');
 

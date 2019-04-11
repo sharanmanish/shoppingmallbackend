@@ -177,7 +177,7 @@ router.post('/payment', checkJWT , (req, res, next) => {
       source: stripeToken.id
     })
     .then(function (customer) {
-      return stripe.chargers.create({
+      return stripe.charges.create({
         amount: currentCharges,
         currency: 'usd',
         customer: customer.id
@@ -202,6 +202,46 @@ router.post('/payment', checkJWT , (req, res, next) => {
         success: true,
         message: "Successfully made a payment"
       });
+    });
+});
+
+router.get('/orders', checkJWT, (req, res, next) => {
+  Order.find({ owner: req.decoded.user._id })
+    .populate('products.product')
+    .populate('owner')
+    .exec((err, orders) => {
+      if(err) {
+        res.json({
+          success: false,
+          message: "Couldn't find your order"
+        });
+      } else {
+        res.json({
+          success: true,
+          message: "Found your order",
+          order: orders
+        });
+      }
+    });
+});
+
+router.get('/orders/:id', checkJWT, (req, res, next) => {
+  Order.findOne({ _id: req.params.id })
+    .deepPopulate('products.product.owner')
+    .populate('owner')
+    .exec((err, order) => {
+      if(err) {
+        res.json({
+          success: false,
+          message: "Couldn't find your order"
+        });
+      } else {
+        res.json({
+          success: true,
+          message: "Found your order",
+          order: order
+        });
+      }
     });
 });
 

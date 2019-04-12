@@ -1,6 +1,6 @@
 # shoppingmallbackend
 
-## gitignored secret file screenshots(required to run server)
+## gitignore -> files screenshots(required to run server)
 
 `algolia.js`
 

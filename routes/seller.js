@@ -57,11 +57,11 @@ router.route('/products')
 
     // just for testing
     router.get('/faker/test', (req, res, next) => {
-        for (i = 0; i < 20; i++) {
+        for (i = 0; i < 10; i++) {
             let product = new Product();
-            product.category = "5c8a0dfae28b7a32141161c0";
-            product.owner = "5c92147d591d5a3f0079fbdd";
-            product.image = faker.image.fashion().replace(/^http:\/\//i, 'https://') + "/";
+            product.category = "5cb07a50caff183fe891ee78";
+            product.owner = "5cb079d9caff183fe891ee77";
+            product.image = faker.image.food().replace(/^http:\/\//i, 'https://') + "/";
             product.title = faker.commerce.productName();
             product.description = faker.lorem.words();
             product.price = faker.commerce.price();

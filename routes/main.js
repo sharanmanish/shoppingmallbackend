@@ -227,7 +227,7 @@ router.get('/orders', checkJWT, (req, res, next) => {
 
 router.get('/orders/:id', checkJWT, (req, res, next) => {
   Order.findOne({ _id: req.params.id })
-    .deepPopulate('products.product.owner')
+    .deepPopulate('products.product.reviews')
     .populate('owner')
     .exec((err, order) => {
       if(err) {

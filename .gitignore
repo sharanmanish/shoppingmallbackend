@@ -5,3 +5,5 @@ s3cred.js
 algolia.js
 
 stripe.js
+
+config.js
